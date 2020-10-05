@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Typography } from "@material-ui/core";
+import React, { Component } from "react";
+import "./App.css";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
+import "fontsource-roboto";
+class App extends Component {
+  render() {
+    return (
+      <Container component="article" maxWidth="sm">
+        <Typography
+          variant="h3"
+          component="h1"
+          align="center">
+          REGISTER
+          </Typography>
+        <RegisterForm onSubmit={onSubmitForm} toCheckCpf={toCheckCpf} />
+      </Container>
+    );
+  }
+}
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function onSubmitForm(data) {
+  console.log(data)
+}
+
+function toCheckCpf(cpf) {
+  if (cpf.length != 11) {
+    return { valid: false, text:"O CPF deve conter 11 dígitos" }
+  } else {
+    return { valid: true, text:"" }
+  }
 }
 
 export default App;
